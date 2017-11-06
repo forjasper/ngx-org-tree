@@ -1,0 +1,17 @@
+
+<div class="org-tree-node">
+  <div class="left">
+      <span><i class="fa fa-trash-o "></i></span>
+  </div>
+  <div class="middle">
+    <span>{{nodeData.name}}</span>
+  </div>
+  <div class="right">
+      <span class="editNode"><i class="fa fa-edit"></i></span>
+      <div class="horizon-line"></div>
+      <span class="addNode"><i class="fa fa-plus"></i></span>
+  </div>
+</div>
+
+<org-tree-list [listData]="nodeData.children" [ngClass]="'org-tree-list'" *ngIf="hasChildren()"></org-tree-list>
+

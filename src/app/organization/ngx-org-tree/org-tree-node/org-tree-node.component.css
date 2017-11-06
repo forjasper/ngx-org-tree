@@ -1,0 +1,77 @@
+/* design a node UI*/
+.horizon-line{
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 1px;
+	overflow:hidden;
+	height:1px;
+	margin:0px auto;
+	padding:0px;
+	background-color:#D5D5D5;
+}
+
+.org-tree-node{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: #ffffff;
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+}
+
+.left{
+	font-size: 10px;
+	position: absolute;
+	border-right:1px #ccc solid;
+	border-bottom:1px #ccc solid;
+	display:inline-block;
+	border-bottom-right-radius: 5px;
+	padding: 0px 3px;
+
+}
+
+.middle{
+	position: relative;
+	margin-left: 20px;
+  padding:0px 10px;
+	display: inline-block;
+	text-align: center;
+	vertical-align: super;
+}
+.right{
+	position: relative;
+	display: inline-block;
+	border-left: 1px solid #ccc;
+	padding-bottom: 1px;
+}
+
+.right .editNode{
+	font-size: 13px;
+	display: inline-block;
+	position: relative;
+	padding: 0px 5px;
+
+}
+.right .addNode{
+	font-size: 13px;
+	position: relative;
+	display: block;
+	padding: 0px 5px;
+}
+
+
+/*set component org-tree-list style*/
+org-tree-list{
+  position: relative;
+  display: block;
+  padding-top: 20px;
+}
+
+org-tree-list::before{
+  content: '';
+  position: absolute; top: 0; left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0; height: 20px;
+}
+
