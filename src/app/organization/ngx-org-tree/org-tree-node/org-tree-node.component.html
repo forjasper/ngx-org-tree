@@ -1,7 +1,7 @@
 
 <div class="org-tree-node">
   <div class="left">
-      <span><i class="fa fa-trash-o "></i></span>
+      <span (click)="deleteNode()"><i class="fa fa-trash-o "></i></span>
   </div>
   <div class="middle">
     <span>{{nodeData.name}}</span>
@@ -13,5 +13,5 @@
   </div>
 </div>
 
-<org-tree-list [listData]="nodeData.children" [ngClass]="'org-tree-list'" *ngIf="hasChildren()"></org-tree-list>
+<org-tree-list [listData]="nodeData.children" (onClickDetailNode)="getNode($event)" [ngClass]="'org-tree-list'" *ngIf="hasChildren()"></org-tree-list>
 

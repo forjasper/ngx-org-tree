@@ -26,4 +26,16 @@ export class NgxOrgTreeComponent implements OnInit {
     console.log(data);
     this.data = data;
   }
+  // get click node
+  onClickNode(node) {
+    console.log('root component...');
+    console.log(node);
+    this.removeNodeById(this.data, node.id);
+  }
+  removeNodeById(data, nodeId) {
+    return;
+  }
+  searchNodeById() {
+    return;
+  }
 }

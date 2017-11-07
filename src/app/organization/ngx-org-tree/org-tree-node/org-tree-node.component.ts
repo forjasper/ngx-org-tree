@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {isUndefined} from 'util';
 
 @Component({
@@ -8,6 +8,7 @@ import {isUndefined} from 'util';
 })
 export class OrgTreeNodeComponent implements OnInit {
   @Input() nodeData: any;
+  @Output() onClickNode: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -20,5 +21,12 @@ export class OrgTreeNodeComponent implements OnInit {
       return false;
     }
     return true;
+  }
+  // throw delete node
+  deleteNode() {
+    this.onClickNode.emit(this.nodeData);
+  }
+  getNode(node) {
+    this.onClickNode.emit(node);
   }
 }
