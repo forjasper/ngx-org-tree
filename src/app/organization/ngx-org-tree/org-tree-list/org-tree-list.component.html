@@ -1,3 +1,10 @@
 
-	<org-tree-node [ngClass]="'org-tree-node'" (onClickNode)='popClickNode($event)' *ngFor="let node of listData" [nodeData]="node"></org-tree-node>
+	<org-tree-node
+    [ngClass]="'org-tree-node'"
+    (_removeNode)='removeNode($event)'
+    (_addNode)="addNode($event)"
+    (_editNode)="editNode($event)"
+    *ngFor="let node of listData"
+    [nodeData]="node">
+  </org-tree-node>
 

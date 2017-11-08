@@ -7,26 +7,89 @@ import {isUndefined} from 'util';
   styleUrls: ['./org-tree-node.component.css']
 })
 export class OrgTreeNodeComponent implements OnInit {
+  editView: boolean;
+  addView: boolean;
+  nodeAddName: string;
+  nodeEditName: string;
   @Input() nodeData: any;
-  @Output() onClickNode: EventEmitter<any> = new EventEmitter();
+  @Output() _removeNode: EventEmitter<any> = new EventEmitter();
+  @Output() _editNode: EventEmitter<any> = new EventEmitter();
+  @Output() _addNode: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
-    console.log('node init...');
+    this.editView = false;
+    this.addView = false;
+    // console.log('node init...');
     console.log(this.nodeData);
   }
   hasChildren() {
     if ( isUndefined(this.nodeData.children) ) {
-      console.log('undefined...');
+      // console.log('undefined...');
       return false;
     }
     return true;
   }
-  // throw delete node
+  // click delete btn
   deleteNode() {
-    this.onClickNode.emit(this.nodeData);
+    // console.log('click remove btn...');
+    this._removeNode.emit(this.nodeData);
   }
-  getNode(node) {
-    this.onClickNode.emit(node);
+  // click edit btn
+  editNode() {
+    this.nodeEditName = this.nodeData.name;
+    if ( this.editView === false) {
+      this.editView = true;
+    }else {
+      this.editView = false;
+    }
+    // console.log('click edit btn...');
+    // this._editNode.emit(this.nodeData);
+  }
+  // click addNode btn
+  addNode() {
+    if ( this.addView === false) {
+      this.addView = true;
+    }else {
+      this.addView = false;
+    }
+    // console.log('click add btn...');
+    // this._addNode.emit(this.nodeData);
+  }
+  // pop current node data
+  popDeleteNode(node) {
+    // console.log('pop del node...');
+    this._removeNode.emit(node);
+  }
+  // pop current node data
+  popEditNode(node) {
+    // console.log('pop edit node...');
+    this._editNode.emit(node);
+  }
+  // pop current node data
+  popAddNode(node) {
+    // console.log('pop add node...');
+    this._addNode.emit(node);
+  }
+  editCancel() {
+    this.editView = false;
+  }
+  editSave() {
+    this.editView = false;
+    this.nodeData.name = this.nodeEditName;
+    this.nodeEditName = '';
+    console.log(this.nodeData);
+    this._editNode.emit(this.nodeData);
+  }
+  addCancel() {
+    this.addView = false;
+  }
+  addSave() {
+    this.addView = false;
+    let node: any;
+    node = {parentNode: null, nodeName: null};
+    node.parentNode = this.nodeData;
+    node.nodeName = this.nodeAddName;
+    this._addNode.emit(node);
   }
 }

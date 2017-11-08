@@ -4,14 +4,32 @@
       <span (click)="deleteNode()"><i class="fa fa-trash-o "></i></span>
   </div>
   <div class="middle">
-    <span>{{nodeData.name}}</span>
+    <span contenteditable="true">{{nodeData.name}}</span>
   </div>
   <div class="right">
-      <span class="editNode"><i class="fa fa-edit"></i></span>
+      <span class="editNode" (click)="editNode()"><i class="fa fa-edit"></i></span>
+    <div class="optionWindow" *ngIf="editView">
+      <input type="text" [(ngModel)]= "nodeEditName">
+      <button (click)="editCancel()">取消</button>
+      <button (click)="editSave()">确定</button>
+    </div>
       <div class="horizon-line"></div>
-      <span class="addNode"><i class="fa fa-plus"></i></span>
+      <span class="addNode" (click)="addNode()"><i class="fa fa-plus"></i></span>
+    <div class="optionWindow" *ngIf="addView">
+      <input type="text" [(ngModel)]= "nodeAddName">
+      <button (click)="addCancel()">取消</button>
+      <button (click)="addSave()">确定</button>
+    </div>
   </div>
 </div>
 
-<org-tree-list [listData]="nodeData.children" (onClickDetailNode)="getNode($event)" [ngClass]="'org-tree-list'" *ngIf="hasChildren()"></org-tree-list>
+<org-tree-list
+  [listData]="nodeData.children"
+  (_removeNode)="popDeleteNode($event)"
+  (_editNode)="popEditNode($event)"
+  (_addNode)="popAddNode($event)"
+  [ngClass]="'org-tree-list'"
+  *ngIf="hasChildren()">
+
+</org-tree-list>
 

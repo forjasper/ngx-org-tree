@@ -7,17 +7,25 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class OrgTreeListComponent implements OnInit {
   @Input() listData: any;
-  @Output() onClickDetailNode: EventEmitter<any> = new EventEmitter();
+  @Output() _removeNode: EventEmitter<any> = new EventEmitter();
+  @Output() _editNode: EventEmitter<any> = new EventEmitter();
+  @Output() _addNode: EventEmitter<any> = new EventEmitter();
   constructor() { }
   ngOnInit() {
-    console.log('list init...');
+    // console.log('list init...');
     console.log(this.listData);
   }
 
-  popClickNode(node) {
-    this.onClickDetailNode.emit(node);
-    console.log('pop node...');
+  removeNode(node) {
+    this._removeNode.emit(node);
+    // console.log('pop node...');
     console.log(node);
-    console.log('-----pop node END-----');
+    // console.log('-----pop node END-----');
+  }
+  addNode(node) {
+    this._addNode.emit(node);
+  }
+  editNode(node) {
+    this._editNode.emit(node);
   }
 }
