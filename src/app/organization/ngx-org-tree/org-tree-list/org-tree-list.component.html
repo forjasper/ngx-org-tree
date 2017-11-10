@@ -1,6 +1,7 @@
 
 	<org-tree-node
     [ngClass]="'org-tree-node'"
+    (_nodeClick)="nodeClick($event)"
     (_removeNode)='removeNode($event)'
     (_addNode)="addNode($event)"
     (_editNode)="editNode($event)"

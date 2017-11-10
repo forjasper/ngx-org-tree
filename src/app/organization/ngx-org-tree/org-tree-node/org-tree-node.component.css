@@ -12,12 +12,19 @@
 }
 
 .org-tree-node{
+  width: 130px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	background: #ffffff;
 	display:inline-block;
 	*display:inline;
 	*zoom:1;
+}
+
+.org-node-color{
+  background: skyblue;
+  border: 1px solid skyblue;
+
 }
 
 /* 2017-11-9 */
@@ -72,7 +79,7 @@
 /*set component org-tree-list style*/
 org-tree-list{
   position: relative;
-  display: block;
+  display: flex;
   padding-top: 20px;
 }
 

@@ -11,7 +11,11 @@ export class OrgTreeNodeComponent implements OnInit {
   addView: boolean;
   nodeAddName: string;
   nodeEditName: string;
+  showChildren: boolean;
+  dbClickTime: any;
+  nodeSelected: boolean;
   @Input() nodeData: any;
+  @Output() _nodeClick: EventEmitter<any> = new EventEmitter();
   @Output() _removeNode: EventEmitter<any> = new EventEmitter();
   @Output() _editNode: EventEmitter<any> = new EventEmitter();
   @Output() _addNode: EventEmitter<any> = new EventEmitter();
@@ -20,6 +24,8 @@ export class OrgTreeNodeComponent implements OnInit {
   ngOnInit() {
     this.editView = false;
     this.addView = false;
+    this.showChildren = true;
+    this.nodeSelected = false;
     // console.log('node init...');
     console.log(this.nodeData);
   }
@@ -31,12 +37,14 @@ export class OrgTreeNodeComponent implements OnInit {
     return true;
   }
   // click delete btn
-  deleteNode() {
+  deleteNode(event) {
+    event.stopPropagation();
     // console.log('click remove btn...');
     this._removeNode.emit(this.nodeData);
   }
   // click edit btn
-  editNode() {
+  editNode(event) {
+    event.stopPropagation();
     this.nodeEditName = this.nodeData.name;
     if ( this.editView === false) {
       this.editView = true;
@@ -47,7 +55,8 @@ export class OrgTreeNodeComponent implements OnInit {
     // this._editNode.emit(this.nodeData);
   }
   // click addNode btn
-  addNode() {
+  addNode(event) {
+    event.stopPropagation();
     if ( this.addView === false) {
       this.addView = true;
     }else {
@@ -70,6 +79,26 @@ export class OrgTreeNodeComponent implements OnInit {
   popAddNode(node) {
     // console.log('pop add node...');
     this._addNode.emit(node);
+  }
+  popNodeClick(node) {
+    this._nodeClick.emit(node);
+  }
+  nodeDoubleClick() {
+    clearTimeout(this.dbClickTime);
+    if (this.showChildren === true) {
+      this.showChildren = false;
+    }else {
+      this.showChildren = true;
+    }
+  }
+  nodeClick() {
+    clearTimeout(this.dbClickTime);
+    this.nodeSelected = !this.nodeSelected;
+    const that = this;
+    this.dbClickTime = setTimeout(function(){
+      that._nodeClick.emit(that.nodeData);
+
+    }, 400);
   }
   editCancel() {
     this.editView = false;
