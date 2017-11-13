@@ -93,7 +93,8 @@ export class OrgTreeNodeComponent implements OnInit {
   }
   nodeClick() {
     clearTimeout(this.dbClickTime);
-    this.nodeSelected = !this.nodeSelected;
+    // this.nodeSelected = !this.nodeSelected;
+    this.nodeData.selected = !this.nodeData.selected;
     const that = this;
     this.dbClickTime = setTimeout(function(){
       that._nodeClick.emit(that.nodeData);

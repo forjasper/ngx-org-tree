@@ -56,20 +56,20 @@ export class NgxOrgTreeComponent implements OnInit {
   }
   nodeClick(node) {
     // 调整未选中节点的样式
-    this.resetStyle(this.data, node.id);
+    this.resetStyle(this.data, node);
     console.log('选择了节点');
     console.log(node);
   }
-  resetStyle(data, nodeId) {
+  resetStyle(data, node) {
   for (const i in data) {
-    if (data[i].id === nodeId) {
+    if (data[i].id === node.id) {
       console.log(data[i].id);
-      data[i].selected = true;
-      this.resetStyle(data[i].children, nodeId);
+      data[i].selected = node.selected;
+      this.resetStyle(data[i].children, node);
     } else {
       data[i].selected = false;
       console.log(data[i].selected);
-      this.resetStyle(data[i].children, nodeId);
+      this.resetStyle(data[i].children, node);
     }
   }}
 }

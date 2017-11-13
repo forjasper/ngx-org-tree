@@ -1,8 +1,13 @@
 
-<div class="org-tree-node" [ngClass]="{'org-node-color':nodeData.selected == true}" (click)="nodeClick()" (dblclick)="nodeDoubleClick()">
+<div class="org-tree-node" [ngClass]="{'org-node-selected':nodeData.selected == true}" (click)="nodeClick()" (dblclick)="nodeDoubleClick()">
+  <span [ngClass]="{'has-children':hasChildren() == false}" >
+    <i [ngClass]="{'fa fa-angle-double-down':showChildren == false}"></i>
+    <i [ngClass]="{'fa fa-angle-double-up':showChildren == true}"></i>
+  </span>
   <div class="left">
       <span (click)="deleteNode($event)"><i class="fa fa-trash-o "></i></span>
   </div>
+
   <div class="middle">
     <span contenteditable="false">{{nodeData.name}}</span>
   </div>
@@ -21,6 +26,7 @@
       <button (click)="addSave()" class="btn btn-primary btn-xs">确定</button>
     </div>
   </div>
+
 </div>
 
 <org-tree-list
