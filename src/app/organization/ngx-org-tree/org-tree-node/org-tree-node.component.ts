@@ -7,8 +7,6 @@ import {isUndefined} from 'util';
   styleUrls: ['./org-tree-node.component.css']
 })
 export class OrgTreeNodeComponent implements OnInit {
-  editView: boolean;
-  addView: boolean;
   nodeAddName: string;
   nodeEditName: string;
   showChildren: boolean;
@@ -22,8 +20,6 @@ export class OrgTreeNodeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.editView = false;
-    this.addView = false;
     this.showChildren = true;
     this.nodeSelected = false;
     // console.log('node init...');
@@ -45,23 +41,14 @@ export class OrgTreeNodeComponent implements OnInit {
   // click edit btn
   editNode(event) {
     event.stopPropagation();
-    this.nodeEditName = this.nodeData.name;
-    if ( this.editView === false) {
-      this.editView = true;
-    }else {
-      this.editView = false;
-    }
+    this._editNode.emit(this.nodeData);
     // console.log('click edit btn...');
     // this._editNode.emit(this.nodeData);
   }
   // click addNode btn
   addNode(event) {
     event.stopPropagation();
-    if ( this.addView === false) {
-      this.addView = true;
-    }else {
-      this.addView = false;
-    }
+    this._addNode.emit(this.nodeData);
     // console.log('click add btn...');
     // this._addNode.emit(this.nodeData);
   }
@@ -100,26 +87,5 @@ export class OrgTreeNodeComponent implements OnInit {
       that._nodeClick.emit(that.nodeData);
 
     }, 400);
-  }
-  editCancel() {
-    this.editView = false;
-  }
-  editSave() {
-    this.editView = false;
-    this.nodeData.name = this.nodeEditName;
-    this.nodeEditName = '';
-    console.log(this.nodeData);
-    this._editNode.emit(this.nodeData);
-  }
-  addCancel() {
-    this.addView = false;
-  }
-  addSave() {
-    this.addView = false;
-    let node: any;
-    node = {parentNode: null, nodeName: null};
-    node.parentNode = this.nodeData;
-    node.nodeName = this.nodeAddName;
-    this._addNode.emit(node);
   }
 }

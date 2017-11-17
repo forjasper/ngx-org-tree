@@ -1,8 +1,8 @@
 <div class="container">
   <org-tree-list
-    [listData]="data"
-    (_nodeClick)="nodeClick($event)"
-    (_removeNode)="removeNode($event)"
-    (_addNode)="addNOde($event)"
-    (_editNode)="editNode($event)"> </org-tree-list>
+    [listData]="nodeData"
+    (_nodeClick)="nodeClickPop($event)"
+    (_removeNode)="removeNodePop($event)"
+    (_addNode)="addNodePop($event)"
+    (_editNode)="editNodePop($event)"> </org-tree-list>
 </div>

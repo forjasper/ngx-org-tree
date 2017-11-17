@@ -10,18 +10,8 @@
   </div>
   <div class="right">
       <span class="editNode" (click)="editNode($event)"><i class="fa fa-edit"></i></span>
-    <div class="editWindow" *ngIf="editView">
-      <input type="text" [(ngModel)]= "nodeEditName">
-      <button (click)="editCancel()" class="btn btn-primary btn-xs">取消</button>
-      <button (click)="editSave()" class="btn btn-primary btn-xs">确定</button>
-    </div>
       <div class="horizon-line"></div>
       <span class="addNode" (click)="addNode($event)"><i class="fa fa-plus"></i></span>
-    <div class="addWindow" *ngIf="addView">
-      <input type="text" [(ngModel)]= "nodeAddName">
-      <button (click)="addCancel()" class="btn btn-primary btn-xs">取消</button>
-      <button (click)="addSave()" class="btn btn-primary btn-xs">确定</button>
-    </div>
   </div>
 
 </div>
